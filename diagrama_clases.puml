@@ -1,0 +1,62 @@
+@startuml
+
+class Mascota {
+    - string nombre
+    - int hambre
+    - int animo
+    - int energia
+    - int aseo
+    - int salud
+    - double horasEdad
+    - Etapa etapa
+    - bool durmiendo
+    - bool muerto
+    - int cantidadCaca
+    - long long ultimaActualizacion
+    + Mascota(string nombreMascota)
+    + alimentar(): ResultadoAccion
+    + jugar(): ResultadoAccion
+    + limpiar(): ResultadoAccion
+    + dormirDespertar(): ResultadoAccion
+    + revivir(string nuevoNombre): void
+    + tick(bool esNoche): vector<string>
+    + getDiasEdad(): int
+}
+
+enum Etapa {
+    Huevo
+    Bebe
+    Nino
+    Adolescente
+    Adulto
+}
+
+struct ResultadoAccion {
+    + bool ok
+    + string mensaje
+}
+
+class Guardado {
+    + guardar(Mascota& mascota): bool
+    + cargar(Mascota& mascota): bool
+}
+
+struct Boton {
+    + string texto
+    + float x
+    + float y
+    + float w
+    + float h
+    + Color color
+
+}
+
+Mascota --> Etapa
+Mascota --> ResultadoAccion
+Guardado --> Mascota
+Programa --> Mascota
+Programa --> Guardado
+Programa --> Boton
+
+
+@enduml

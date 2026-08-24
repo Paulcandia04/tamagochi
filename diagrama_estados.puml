@@ -1,0 +1,36 @@
+@startuml
+
+state Huevo
+state Bebe
+state Nino
+state Adolescente
+state Adulto
+state Muerto
+
+state Durmiendo
+state Despierto
+
+Huevo --> Bebe : horasEdad >= 2
+Bebe --> Nino : horasEdad >= 8
+Nino --> Adolescente : horasEdad >= 16
+Adolescente --> Adulto : horasEdad >= 24
+
+state Vivo {
+    [*] --> Huevo
+    Huevo --> Bebe
+    Bebe --> Nino
+    Nino --> Adolescente
+    Adolescente --> Adulto
+}
+
+Vivo --> Muerto : salud <= 0
+
+state Sueno {
+    [*] --> Despierto
+    Despierto --> Durmiendo : dormirDespertar()
+    Durmiendo --> Despierto : dormirDespertar()
+}
+
+Muerto --> Huevo : revivir()
+
+@enduml
